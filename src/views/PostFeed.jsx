@@ -2,32 +2,19 @@ import { Post } from '../components/Post';
 import avatar from '../assets/avatar.svg';
 import camera from '../assets/camera.svg'
 import video from '../assets/video.svg'
-import { useState } from 'react';
-import { posts } from '../data'
+import { useState, useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
+
 
 export const PostFeed = () => {
   
-  const [newPost, setNewPost] = useState('');
-  const [userPosts, setNewPosts] = useState(posts)
+  const [newPostText, setNewPostText] = useState('');
+  const { posts, addNewPost } = useContext(GlobalContext);
 
   const handlePost = (e) => {
     e.preventDefault();    
-    setNewPosts(userPosts.concat(
-      {
-        user: {
-          name: "Mario",
-          avatar: avatar
-        },
-        post: {
-          text: newPost,
-          hypes: 0,
-          comments: [],
-          shares: 0,
-          views: 0 
-        }
-      }
-    ))
-    setNewPost('')
+    addNewPost(newPostText)
+    setNewPostText('')
   }
 
   const renderCreatePost = () => {
@@ -36,8 +23,8 @@ export const PostFeed = () => {
         <div style={styles.inputContainer}>
           <input 
             type="text"
-            onChange={(e) => { setNewPost(e.target.value) }}
-            value={newPost}
+            onChange={(e) => { setNewPostText(e.target.value) }}
+            value={newPostText}
             placeholder="What's on your mind?"
             style={styles.input}
           />
@@ -66,15 +53,15 @@ export const PostFeed = () => {
   }
 
   const renderPosts = (posts) => {
-    return posts.map((el, index) => {
-      return <Post key={`post-${index}`} user={el.user} post={el.post}/>
+    return posts.map((post) => {
+      return <Post key={post.id} post={post}/>
     })
   }
 
   return(
     <div aria-label="main-post-feed" style={styles.wrapper}>
       {renderCreatePost()}
-      {renderPosts(userPosts)}
+      {renderPosts(posts)}
     </div>
   )
 }

@@ -86,7 +86,7 @@ PostInteractionBar.propTypes = {
 const styles = {
   wrapper: {
     display: "flex",
-    margin: "30px",
+    margin: "20px 30px",
     flexWrap: "wrap"
   }
 }

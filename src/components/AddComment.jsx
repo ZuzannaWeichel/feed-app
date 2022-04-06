@@ -1,37 +1,46 @@
 import comment from '../assets/comment.svg';
 import add from '../assets/add.svg';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 
-export const AddComment = ({handleComment}) => {
+
+export const AddComment = ({ postId }) => {
   
-  const [showInput, setShowInput] = useState(false)
-  const [newComment, setNewComment] = useState('')
-  
-  const handleAddComment = () => {
-    setShowInput(true)
+  const [isInput, setIsInput] = useState(false)
+  const [newCommentText, setNewCommentText] = useState('')
+  const { addNewComment } = useContext(GlobalContext);
+
+  const showInput = () => {
+    setIsInput(true)
   }
   
+  const handleComment = (e) => {
+    e.preventDefault()
+    addNewComment({postId, comment: newCommentText})
+    setNewCommentText('')
+  }
+
   const renderAddComment = () => {
-    return showInput ? 
-      <form style={styles.wrapper} onSubmit={() => handleComment(newComment)}>
+    return isInput ? 
+      <form style={styles.wrapper} onSubmit={handleComment}>
         <input 
+          autoFocus
           type="text"
-          onChange={(e) => { setNewComment(e.target.value) }}
-          value={newComment}
+          onChange={(e) => { setNewCommentText(e.target.value) }}
+          value={newCommentText}
           style={styles.inputStyle}
           placeholder='Comment goes here'
         />
         <button 
-          type='submit'
+          type="submit"
           style={styles.postButton}
-          onClick={() => setNewComment('')}
         >
           Post
         </button>
       </form>
     :
     <div style={styles.wrapper}
-      onClick={handleAddComment}
+      onClick={showInput}
     >
       <div style={styles.container}>
         <img src={comment} style={styles.icon}/>

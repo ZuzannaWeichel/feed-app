@@ -2,21 +2,42 @@ import PropTypes from 'prop-types';
 import { AddComment } from './AddComment';
 import { PostHeader } from "./PostHeader";
 import { PostInteractionBar } from './PostInteractionBar';
+// import { GlobalContext } from '../context/GlobalState';
 
-export const Post = ({user, post}) =>{ 
+export const Post = ({ post }) =>{ 
   
-  const handleComment = (comment) => {
-    // e.preventDefault();  
-    console.log(comment) 
-
-    //update the global post object with new comment 
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const renderComments = () => {
+    return(
+      <div>
+        <hr style={styles.line}/>
+        {post.comments.map((c) => {
+          return (
+            <div key={c.id}>
+              <PostHeader
+              avatarPath={c.user.avatar}
+              title={c.user.name}
+              subtitle={c.timeStamp.toLocaleDateString("en-US", options)}
+              />
+              <div style={styles.textContainer}>
+                {c.text}
+              </div>
+              <PostInteractionBar
+                isComment={true}
+                post={post}
+              />
+            </div>
+          )
+        })}
+      </div>
+    )
   }
 
   return(
     <div style={styles.wrapper}>
       <PostHeader
-        avatarPath={user.avatar}
-        title={user.name}
+        avatarPath={post.user.avatar}
+        title={post.user.name}
         subtitle={'2 minutes ago'}
       />
       <div style={styles.textContainer}>
@@ -26,22 +47,24 @@ export const Post = ({user, post}) =>{
         isComment={false}
         post={post}
       />
-      <AddComment handleComment={handleComment} />
+      <AddComment postId={post.id}/>
+      {renderComments()}
     </div>
   ) 
 }
 
 Post.propTypes = {
-  user: PropTypes.shape({
-    name: PropTypes.string,
-    avatar: PropTypes.string,
-  }),
   post: PropTypes.shape({
+    id: PropTypes.string,
     text: PropTypes.string,
     hypes: PropTypes.number,
     comments: PropTypes.array,
     shares: PropTypes.number,
-    views: PropTypes.number 
+    views: PropTypes.number,
+    user: PropTypes.shape({
+      name: PropTypes.string,
+      avatar: PropTypes.string,
+    }), 
   }),
 }
 
@@ -57,7 +80,7 @@ const styles = {
     justifyContent: "center"
   },
   textContainer: {
-    margin: "15px 30px 0px"
+    margin: "20px 30px 0px"
   },
   title: {
     fontSize: 18,
@@ -68,6 +91,12 @@ const styles = {
     fontSize: 12,
     fontFamily: "Open Sans, sans-serif",
     color: "rgba(18, 21, 29, 0.6)"
+  },
+  line:{
+    border: 0,
+    height: 1,
+    background:"rgba(206, 215, 231, 1)",
+    margin: "0px 30px"
   }
 
 }
