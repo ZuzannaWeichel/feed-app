@@ -34,3 +34,5 @@ I didn't build out a back-end for this application. My vision would be for the a
 Another thing that would be given with the back-end implementation is user and their picture. App would use the user in session as an owner od posts and comments. The avatars would be stored in S3 bucket or some other data storage and fetch upon request.
 
 I added bunch of files `./src/assets` because when I wanted to use FontAwesome I couldn't find the correct icons in the free tier.
+
+I realized I didn't follow the described in the project PRD phases  very well making it harder on myself. I need to make sure when approaching a new project not get overexcited and keep organized.
