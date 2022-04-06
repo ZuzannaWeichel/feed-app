@@ -21,7 +21,6 @@ export default (state, action) => {
           posts: [newPost, ...state.posts]
         }
       case 'ADD_COMMENT':
-        console.log("double?")
         const postForUpdate = state.posts.find((p) => p.id === action.payload.postId)
         const newComments = [{
           id: uuid(),
@@ -37,10 +36,23 @@ export default (state, action) => {
         }, ...postForUpdate.comments]
 
         postForUpdate.comments = newComments
-        
+        console.log({posts: [...state.posts]})
+
         return {
           posts: [...state.posts]
         }
+      case 'ADD_HYPES':
+        const hypeForUpdate = state.posts.find((p) => p.id === action.payload || p.comments.id === action.payload)
+        console.log({hypeForUpdate})
+        hypeForUpdate.hypes+=1
+        return{
+          posts: [...state.posts]
+        }
+      // case 'SHOW_COMMENTS':
+      //   return{
+      //     posts: state.posts,
+      //     showingComments: action.payload
+      //   }
       default:
           return state;
   }

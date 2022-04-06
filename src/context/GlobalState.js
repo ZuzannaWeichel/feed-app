@@ -23,12 +23,18 @@ export const GlobalProvider = ({ children }) => {
            payload: {postId, comment}
        });
    }
-   function incrementHypes(post) {
-    dispatch({
-        type: 'ADD_HYPES',
-        payload: post
-    });
-}
+   function incrementHypes(id) {
+        dispatch({
+            type: 'ADD_HYPES',
+            payload: id
+        });
+    }
+    // function showComments(isShowing) {
+    //     dispatch({
+    //         type: 'SHOW_COMMENTS',
+    //         payload: isShowing
+    //     });
+    // }
 
    return(
       <GlobalContext.Provider value = {{posts : state.posts, addNewPost, addNewComment, incrementHypes }}> 

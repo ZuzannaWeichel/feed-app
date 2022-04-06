@@ -2,12 +2,20 @@ import PropTypes from 'prop-types';
 import fire  from '../assets/fire.svg';
 import fireHover  from '../assets/fireHover.svg';
 import fireClick  from '../assets/fireClick.svg';
-import comment from '../assets/comment.svg';
+import commentIcon from '../assets/comment.svg';
+import commentHover from '../assets/commentHover.svg';
+import commentClick from '../assets/commentClick.svg';
 import share from '../assets/share.svg';
+import shareHover from '../assets/shareHover.svg';
 import { InteractionNode } from './InteractionNode';
+import { GlobalContext } from '../context/GlobalState';
+import { useContext } from 'react';
 
-export const PostInteractionBar = ({ isComment, post }) => { 
+
+export const PostInteractionBar = ({ isComment, post, comment }) => { 
   
+  const { incrementHypes } = useContext(GlobalContext);
+
   const postInteractions = [
     {
       icon: fire,
@@ -17,12 +25,15 @@ export const PostInteractionBar = ({ isComment, post }) => {
       title: "Hypes"
     },
     {
-      icon: comment,
+      icon: commentIcon,
+      hoverIcon: commentHover,
+      clickIcon: commentClick, 
       number: post.comments.length,
       title: "Comments"
     },
     {
       icon: share,
+      hoverIcon: shareHover,
       number: post.shares,
       title: "Shares"
     },
@@ -36,24 +47,36 @@ export const PostInteractionBar = ({ isComment, post }) => {
   const commentInteractions = [
    {
       icon: fire,
-      number: 20,
+      hoverIcon: fireHover,
+      clickIcon: fireClick, 
+      number: comment?.hypes,
       title: "Hypes"
     },
     {
-      icon: comment,
-      number: 40,
+      icon: commentIcon,
+      hoverIcon: commentHover,
+      number: comment?.replies,
       title: "Replies"
     },
     {
       icon: share,
-      number: 5,
+      hoverIcon: shareHover,
+      number: comment?.shares,
       title: "Shares"
     },
   ]
 
   const handleClick = (title) => {
-    const postUpdate = postInteractions.find((el) => el.title === title)
-    post[postUpdate.title] += 1
+    const id = isComment? comment.id : post.id
+    console.log(id)
+    switch (title) {
+      case "Hypes":
+        incrementHypes(id)
+      break
+      // case "Comments":
+      //   showComments(true)
+      // break
+    }
   }
 
   const interactions = isComment ? commentInteractions : postInteractions;
@@ -64,7 +87,7 @@ export const PostInteractionBar = ({ isComment, post }) => {
           key={`${interaction.title}-${index}`}
           icon={interaction.icon}
           iconHover={interaction.hoverIcon}
-          iconClick={interaction.clickIcon}
+          iconClick={interaction.clickIcon?? interaction.icon}
           number={interaction.number}
           title={interaction.title}
           onClick={() => handleClick(interaction.title)}

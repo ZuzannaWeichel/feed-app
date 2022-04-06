@@ -2,34 +2,35 @@ import PropTypes from 'prop-types';
 import { AddComment } from './AddComment';
 import { PostHeader } from "./PostHeader";
 import { PostInteractionBar } from './PostInteractionBar';
-// import { GlobalContext } from '../context/GlobalState';
 
 export const Post = ({ post }) =>{ 
   
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+
   const renderComments = () => {
     return(
       <div>
-        <hr style={styles.line}/>
-        {post.comments.map((c) => {
-          return (
-            <div key={c.id}>
-              <PostHeader
-              avatarPath={c.user.avatar}
-              title={c.user.name}
-              subtitle={c.timeStamp.toLocaleDateString("en-US", options)}
-              />
-              <div style={styles.textContainer}>
-                {c.text}
-              </div>
-              <PostInteractionBar
-                isComment={true}
-                post={post}
-              />
+      <hr style={styles.line}/>
+      {post.comments.map((c) => {
+        return (
+          <div key={c.id}>
+            <PostHeader
+            avatarPath={c.user.avatar}
+            title={c.user.name}
+            subtitle={c.timeStamp.toLocaleDateString("en-US", options)}
+            />
+            <div style={styles.textContainer}>
+              {c.text}
             </div>
-          )
-        })}
-      </div>
+            <PostInteractionBar
+              isComment={true}
+              post={post}
+              comment={c}
+            />
+          </div>
+        )
+      })}
+    </div>
     )
   }
 
