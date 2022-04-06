@@ -82,7 +82,7 @@ const styles = {
     borderRadius: 100,
     position: "absolute",
     top: "25%",
-    left: "90%",
+    right: "5%",
     background: "transparent",
     ":hover": {
       color: "rgba(0, 108, 250, 1)",
