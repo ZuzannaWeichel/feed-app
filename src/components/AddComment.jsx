@@ -43,11 +43,11 @@ export const AddComment = ({ postId }) => {
       onClick={showInput}
     >
       <div style={styles.container}>
-        <img src={comment} style={styles.icon}/>
+        <img src={comment} style={styles.icon} alt="icon"/>
         Add comment
       </div>
       <div style={styles.container}>
-        <img src={add} style={styles.icon}/>
+        <img src={add} style={styles.icon} alt="icon"/>
       </div>
     </div>
   }

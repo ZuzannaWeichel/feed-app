@@ -68,7 +68,7 @@ export const PostInteractionBar = ({ isComment, post, comment }) => {
 
   const handleClick = (title) => {
     const id = isComment? comment.id : post.id
-    console.log(id)
+
     switch (title) {
       case "Hypes":
         incrementHypes(id)
@@ -76,6 +76,8 @@ export const PostInteractionBar = ({ isComment, post, comment }) => {
       // case "Comments":
       //   showComments(true)
       // break
+      default:
+        console.log(id, title)
     }
   }
 

@@ -1,7 +1,7 @@
 import avatar from '../assets/avatar.svg';
 import uuid from 'react-uuid';
 
-export default (state, action) => {
+const reducer = (state, action) => {
   switch(action.type) {
       case 'ADD_POST':
         const newPost = {
@@ -57,3 +57,4 @@ export default (state, action) => {
           return state;
   }
 }
+export default reducer
