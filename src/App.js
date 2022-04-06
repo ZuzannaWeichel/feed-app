@@ -1,10 +1,12 @@
 import { PostFeed } from './views/PostFeed';
-import 'font-awesome/css/font-awesome.min.css';
+import { GlobalProvider } from './context/GlobalState';
 
 function App() {
   return (
     <div className="App">
-      <PostFeed />
+      <GlobalProvider> 
+        <PostFeed />
+      </GlobalProvider> 
     </div>
   );
 }
