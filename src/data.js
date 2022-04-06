@@ -1,11 +1,11 @@
-import logo from './assets/avatar.svg';
+import avatar from './assets/avatar.svg';
 
 
 export const posts = [
   {
     user: {
       name: "Mario",
-      avatar: logo
+      avatar: avatar
     },
     post: {
       text: "It's a-me, Mario!",
@@ -18,7 +18,7 @@ export const posts = [
   {
     user: {
       name: "Mario",
-      avatar: logo
+      avatar: avatar
     },
     post: {
       text: "Hui hew! Just what I needed!",

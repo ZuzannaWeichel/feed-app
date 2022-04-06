@@ -3,7 +3,7 @@
   "name": "Work Sample",
   "icons": [
     {
-      "src": "Logo.png",
+      "src": "logo.svg",
       "sizes": "100x100",
       "type": "image/png"
     }

@@ -1,5 +1,5 @@
 import { Post } from '../components/Post';
-import logo from '../assets/avatar.svg';
+import avatar from '../assets/avatar.svg';
 import camera from '../assets/camera.svg'
 import video from '../assets/video.svg'
 import { useState } from 'react';
@@ -16,7 +16,7 @@ export const PostFeed = () => {
       {
         user: {
           name: "Mario",
-          avatar: logo
+          avatar: avatar
         },
         post: {
           text: newPost,

@@ -1,4 +1,3 @@
-import './App.css';
 import { PostFeed } from './views/PostFeed';
 import 'font-awesome/css/font-awesome.min.css';
 
