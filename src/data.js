@@ -1,5 +1,4 @@
 import avatar from './assets/avatar.svg';
-import uuid from 'react-uuid'
 
 export const posts = [
   {
