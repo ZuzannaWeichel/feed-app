@@ -7,6 +7,7 @@ import { GlobalContext } from '../context/GlobalState';
 export const AddComment = ({ postId }) => {
   
   const [isInput, setIsInput] = useState(false)
+  const [isHover, setIsHover] = useState(false)
   const [newCommentText, setNewCommentText] = useState('')
   const { addNewComment } = useContext(GlobalContext);
 
@@ -32,8 +33,10 @@ export const AddComment = ({ postId }) => {
           placeholder='Comment goes here'
         />
         <button 
+          onMouseEnter={() => setIsHover(true)}
+          onMouseLeave={() => setIsHover(false)}
           type="submit"
-          style={styles.postButton}
+          style={isHover ? styles.postButtonHover : styles.postButton}
           aria-label={`post-comment-${postId}`}
         >
           Post
@@ -86,11 +89,18 @@ const styles = {
     top: "25%",
     right: "5%",
     background: "transparent",
-    ":hover": {
-      color: "rgba(0, 108, 250, 1)",
-      fontWeight: 500,
-      cursor: "pointer",
-    }
+  },
+  postButtonHover: {
+    border: 0,
+    fontFamily: "Poppins, sans-serif",
+    borderRadius: 100,
+    position: "absolute",
+    top: "25%",
+    right: "5%",
+    background: "transparent",
+    color: "rgba(0, 108, 250, 1)",
+    fontWeight: 500,
+    cursor: "pointer",
   },
   container: {
     display: "flex",

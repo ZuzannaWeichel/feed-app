@@ -15,6 +15,7 @@ export const Post = ({ post }) =>{
         return (
           <div key={c.id}>
             <PostHeader
+            isComment={true}
             avatarPath={c.user.avatar}
             title={c.user.name}
             subtitle={c.timeStamp.toLocaleDateString("en-US", options)}
@@ -37,6 +38,7 @@ export const Post = ({ post }) =>{
   return(
     <div style={styles.wrapper}>
       <PostHeader
+        isComment={false}
         avatarPath={post.user.avatar}
         title={post.user.name}
         subtitle={'2 minutes ago'}
