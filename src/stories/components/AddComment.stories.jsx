@@ -1,5 +1,6 @@
 import React from 'react';
 import { AddComment } from '../../components/AddComment';
+import avatar from '../../assets/avatar.svg'
 
 export default {
   title: 'Example/AddComment',
@@ -9,11 +10,4 @@ export default {
   },
 };
 
-const Template = (args) => <AddComment {...args} />;
-
-export const WithUser = Template.bind({});
-WithUser.args = {
-  title: "Mario",
-  subtitle: "2 minutes ago",
-  avatarPath: avatar
-};
+export const Template = (args) => <AddComment {...args} />;
