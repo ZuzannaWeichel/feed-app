@@ -34,6 +34,7 @@ export const AddComment = ({ postId }) => {
         <button 
           type="submit"
           style={styles.postButton}
+          aria-label={`post-comment-${postId}`}
         >
           Post
         </button>
@@ -41,6 +42,7 @@ export const AddComment = ({ postId }) => {
     :
     <div style={styles.wrapper}
       onClick={showInput}
+      aria-label={`add-comment-${postId}`}
     >
       <div style={styles.container}>
         <img src={comment} style={styles.icon} alt="icon"/>

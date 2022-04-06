@@ -1,16 +1,15 @@
 import avatar from './assets/avatar.svg';
 import uuid from 'react-uuid'
 
-
 export const posts = [
   {
-    id: uuid(),
+    id: "1",
     timeStamp: new Date(),
     text: "It's a-me, Mario!",
     hypes: 2,
     comments: [
       {
-        id: uuid(),
+        id: "1-1",
         timeStamp: new Date(),
         text: "ha ha",
         hypes: 0,
@@ -22,7 +21,7 @@ export const posts = [
         }
       },
       {
-        id: uuid(),
+        id: "1-2",
         timeStamp: new Date(),
         text: "Mario!!!",
         hypes: 2,
@@ -42,7 +41,7 @@ export const posts = [
     },   
   },
   {
-    id: uuid(),
+    id: "2",
     timeStamp: new Date(),
     text: "Hui hew! Just what I needed!",
     hypes: 58,
