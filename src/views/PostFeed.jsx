@@ -1,5 +1,4 @@
 import { Post } from '../components/Post';
-import avatar from '../assets/avatar.svg';
 import camera from '../assets/camera.svg'
 import video from '../assets/video.svg'
 import { useState, useContext } from 'react';
