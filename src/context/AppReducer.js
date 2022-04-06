@@ -34,17 +34,22 @@ const reducer = (state, action) => {
             avatar: avatar,
           }
         }, ...postForUpdate.comments]
-
         postForUpdate.comments = newComments
-        console.log({posts: [...state.posts]})
 
         return {
           posts: [...state.posts]
         }
       case 'ADD_HYPES':
-        const hypeForUpdate = state.posts.find((p) => p.id === action.payload || p.comments.id === action.payload)
-        console.log({hypeForUpdate})
-        hypeForUpdate.hypes+=1
+        const hypePost = state.posts.find((p) => p.id === action.payload)
+        if(hypePost){
+          hypePost.hypes+=1
+        }
+        
+        const hypeCommentPost = state.posts.filter((p) => p.comments.find((c) => c.id === action.payload))[0]
+        const hypeComment = hypeCommentPost.comments.filter((c) => c.id === action.payload)[0]
+        if(hypeComment){
+          hypeComment.hypes+=1
+        }
         return{
           posts: [...state.posts]
         }
