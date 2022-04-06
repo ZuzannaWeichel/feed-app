@@ -75,7 +75,8 @@ const styles = {
   inputStyle: {
     border: 0,
     borderRadius: 100,
-    paddingLeft: 20,  
+    paddingLeft: 20, 
+    paddingRight: "20%", 
     outline: "none",
     width: "100%",
     fontSize: 14,
