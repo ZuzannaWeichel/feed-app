@@ -43,13 +43,12 @@ const reducer = (state, action) => {
         const hypePost = state.posts.find((p) => p.id === action.payload)
         if(hypePost){
           hypePost.hypes+=1
-        }
-        
-        const hypeCommentPost = state.posts.filter((p) => p.comments.find((c) => c.id === action.payload))[0]
-        const hypeComment = hypeCommentPost.comments.filter((c) => c.id === action.payload)[0]
-        if(hypeComment){
+        } else {
+          const hypeCommentPost = state.posts.filter((p) => p.comments.find((c) => c.id === action.payload))[0]
+          const hypeComment = hypeCommentPost.comments.filter((c) => c.id === action.payload)[0]
           hypeComment.hypes+=1
         }
+        
         return{
           posts: [...state.posts]
         }
